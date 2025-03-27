@@ -31,19 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### File Konfigurasi Sensitif ###
-.env
-application.properties
-application.yml
-secrets.yml
-
-### Log Files ###
-logs/
-*.log
-nohup.out
-hs_err_pid*
-
-### File Sistem ###
-.DS_Store
-Thumbs.db
