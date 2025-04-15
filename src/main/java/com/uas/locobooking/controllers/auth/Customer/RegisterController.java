@@ -51,22 +51,5 @@ public class RegisterController {
         }
     }
 
-    @SecurityRequirement(name = "Bearer Authentication")
-    @GetMapping("/get-user")
-    public ResponseEntity<Object> getUser(@RequestParam String email) {
-        try {
-            
-            return ResponseEntity.ok()
-                    .body(GeneralResponse.success(customerService.getCustomerByEmail(email),
-                            MessageConstant.OK_GET_DATA));
-        } catch (ResponseStatusException e) {
-            log.info(e.getReason());
-            return ResponseEntity.status(e.getStatusCode())
-                    .body(GeneralResponse.error(MessageConstant.BAD_REQUEST));
-        } catch (Exception e) {
-            log.info(e.getMessage());
-            return ResponseEntity.internalServerError()
-                    .body(GeneralResponse.error(MessageConstant.INTERNAL_SERVER_ERROR));
-        }
-    }
+
 }

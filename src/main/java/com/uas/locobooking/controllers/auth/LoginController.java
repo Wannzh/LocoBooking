@@ -3,7 +3,6 @@ package com.uas.locobooking.controllers.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,6 @@ import com.uas.locobooking.dto.auth.ResetPasswordRequestDto;
 import com.uas.locobooking.services.auth.LoginService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
@@ -101,26 +99,6 @@ public class LoginController {
         }
     }
 
-    @DeleteMapping("/delete-user")
-    @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<Object> deleteUser(@RequestParam String email) {
-
-        try {
-
-            loginService.deleteUser(email);
-            return ResponseEntity.ok()
-                    .body(GeneralResponse.success(null, MessageConstant.OK_DELETE_DATA));
-        } catch (ResponseStatusException e) {
-
-            log.info(e.getMessage());
-            return ResponseEntity.status(e.getStatusCode())
-                    .body(GeneralResponse.error(e.getReason()));
-        } catch (Exception e) {
-
-            log.info(e.getMessage());
-            return ResponseEntity.internalServerError()
-                    .body(GeneralResponse.error(MessageConstant.INTERNAL_SERVER_ERROR));
-        }
-    }
+ 
 
 }

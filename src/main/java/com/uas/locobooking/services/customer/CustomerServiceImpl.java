@@ -56,6 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
             user.setRoles(rolesRepository.findByRoleName(RoleConstant.USER_ROLE));
             sendEmail(dto.getEmail());
             usersRepository.save(user);
+            System.out.println("cek 123");
 
             return customerRepository.save(customer);
         } catch (Exception e) {
@@ -86,18 +87,18 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
-    @Override
-    public Customer getCustomerByEmail(String email) {
+    // @Override
+    // public Customer getCustomerByEmail(String email) {
 
-        try {
-            Customer customer = customerRepository.findByEmail(email).orElse(null);
-            if (customer != null)
-                return customer;
-            else
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found");
-        } catch (Exception e) {
+    //     try {
+    //         Customer customer = customerRepository.findByEmail(email).orElse(null);
+    //         if (customer != null)
+    //             return customer;
+    //         else
+    //             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found");
+    //     } catch (Exception e) {
 
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
+    //         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+    //     }
+    // }
 }

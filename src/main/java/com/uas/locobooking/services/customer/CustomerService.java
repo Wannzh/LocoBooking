@@ -14,9 +14,8 @@ public interface CustomerService {
 
     Users getByEmail(String email);
 
-    Customer getCustomerByEmail(String email);
+    // Customer getCustomerByEmail(String email);
 
-    
     
 }
 

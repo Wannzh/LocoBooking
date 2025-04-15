@@ -12,7 +12,5 @@ public interface LoginService {
 
     void resetPassword(ResetPasswordRequestDto dto);
 
-    void deleteUser(String email);
-
     void requestDeleteAccount(String email);
 }

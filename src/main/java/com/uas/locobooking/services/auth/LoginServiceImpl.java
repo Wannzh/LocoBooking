@@ -108,17 +108,6 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
-    @Override
-    public void deleteUser(String email) {
-
-        try {
-
-            if (email == null)
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid email");
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
 
     @Override
     public void requestDeleteAccount(String email) { 

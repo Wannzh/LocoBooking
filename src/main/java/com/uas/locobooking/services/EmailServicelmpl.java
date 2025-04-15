@@ -91,7 +91,7 @@ public class EmailServicelmpl implements EmailService {
                     mimeMessage, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
             message.setFrom(ADMIN_EMAIL, ADMIN_PERSONAL);
             message.setTo("dedydarmawan876@gmail.com");
-            message.setSubject("Account Deletion Request | Rasa Hotel");
+            message.setSubject("Account Deletion Request | Locobooking");
 
             Map<String, Object> variables = new HashMap<>();
 
