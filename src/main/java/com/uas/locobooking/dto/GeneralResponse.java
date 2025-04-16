@@ -1,6 +1,6 @@
 package com.uas.locobooking.dto;
 
-import com.javaproject.locobooking.constants.MessageConstant;
+import com.uas.locobooking.constants.MessageConstant;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

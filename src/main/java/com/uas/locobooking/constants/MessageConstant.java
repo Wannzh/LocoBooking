@@ -1,7 +1,6 @@
-package com.javaproject.locobooking.constants;
+package com.uas.locobooking.constants;
 
 public class MessageConstant {
-
     public static final String OK_EMPTY = "Data Is Empty";
     public static final String OK_GET_DATA = "Successfully Fetch Data";
     public static final String OK_POST_DATA = "Successfully Post Data";

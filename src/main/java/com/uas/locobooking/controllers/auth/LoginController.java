@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.javaproject.locobooking.constants.MessageConstant;
+import com.uas.locobooking.constants.MessageConstant;
 import com.uas.locobooking.dto.GeneralResponse;
 import com.uas.locobooking.dto.auth.LoginRequestDto;
 import com.uas.locobooking.dto.auth.LoginResponseDto;

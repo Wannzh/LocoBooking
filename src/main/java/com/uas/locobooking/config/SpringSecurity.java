@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.uas.locobooking.constant.RoleConstant;
+import com.uas.locobooking.constants.RoleConstant;
 import com.uas.locobooking.dto.security.JwtFilter;
 import com.uas.locobooking.exception.CustomAccessDeniedException;
 import com.uas.locobooking.exception.CustomUnAuthorizeException;

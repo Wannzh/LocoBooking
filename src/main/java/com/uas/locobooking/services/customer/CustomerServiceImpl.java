@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.uas.locobooking.constant.RoleConstant;
+import com.uas.locobooking.constants.RoleConstant;
 import com.uas.locobooking.dto.customer.CustomerRequestDto;
 import com.uas.locobooking.models.Customer;
 import com.uas.locobooking.models.Users;

@@ -5,20 +5,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.javaproject.locobooking.constants.MessageConstant;
+import com.uas.locobooking.constants.MessageConstant;
 import com.uas.locobooking.dto.GeneralResponse;
 import com.uas.locobooking.dto.customer.CustomerRequestDto;
 import com.uas.locobooking.models.Customer;
 import com.uas.locobooking.services.customer.CustomerService;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 

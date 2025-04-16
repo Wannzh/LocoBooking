@@ -1,4 +1,4 @@
-package com.uas.locobooking.constant;
+package com.uas.locobooking.constants;
 
 public class RoleConstant {
     public static final String USER_ROLE = "USER";
