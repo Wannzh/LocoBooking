@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class TrainDto {
-    private String id;
     private String trainName;
     private String trainCode;
     private int totalSeats;
@@ -21,7 +20,6 @@ public class TrainDto {
         if (train == null) return null;
 
         return TrainDto.builder()
-                .id(train.getId())
                 .trainName(train.getTrainName())
                 .trainCode(train.getTrainCode())
                 .totalSeats(train.getTotalSeats())
@@ -30,7 +28,6 @@ public class TrainDto {
 
     public Train toEntity() {
         return Train.builder()
-                .id(id)
                 .trainName(trainName)
                 .trainCode(trainCode)
                 .totalSeats(totalSeats)

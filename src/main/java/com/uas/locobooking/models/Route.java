@@ -24,11 +24,13 @@ public class Route {
     @Column(name = "Id", nullable = false)
     private String id;
 
+    @Column(name = "route_code", nullable = false)
+    private String routeCode;
+
     @ManyToOne
     private Station departureStation;
 
     @ManyToOne
     private Station arrivalStation;
 
-    private double price;
 }

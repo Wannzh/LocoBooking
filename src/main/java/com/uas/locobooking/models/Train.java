@@ -26,7 +26,7 @@ public class Train {
     @Column(name = "train_name", nullable = false)
     private String trainName;
     
-    @Column(name = "train_number", nullable = false)
+    @Column(name = "train_code", nullable = false, length = 5)
     private String trainCode;
 
     @Column(name = "total_seats")

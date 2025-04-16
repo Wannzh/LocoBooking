@@ -1,13 +1,14 @@
 package com.uas.locobooking.services.station;
 
-import java.util.List;
-
+import com.uas.locobooking.dto.GenericResponse;
+import com.uas.locobooking.dto.PageResponse;
 import com.uas.locobooking.dto.station.StationDto;
 
 public interface StationService {
     StationDto createStation(StationDto stationDto);
-    StationDto getStationById(String id);
-    List<StationDto> getAllStations();
+    GenericResponse<PageResponse<StationDto>> getAllStations(int page, int size, String keyword,
+    String sortBy, String direction);
+    GenericResponse<StationDto> getStationById(String stationCode);
     StationDto updateStation(String id, StationDto stationDto);
     void deleteStation(String id);
 }

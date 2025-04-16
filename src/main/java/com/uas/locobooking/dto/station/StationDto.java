@@ -12,15 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class StationDto {
-    private String id;
+    private String stationCode;
     private String stationName;
     private String address;
 
     public static StationDto fromEntity(Station station) {
         if (station == null) return null;
-        
         return StationDto.builder()
-                .id(station.getId())
+                .stationCode(station.getStationCode())
                 .stationName(station.getStationName())
                 .address(station.getAddress())
                 .build();
@@ -28,7 +27,7 @@ public class StationDto {
 
     public Station toEntity() {
         return Station.builder()
-                .id(id)
+                .stationCode(stationCode)
                 .stationName(stationName)
                 .address(address)
                 .build();

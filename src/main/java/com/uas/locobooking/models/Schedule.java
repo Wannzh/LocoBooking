@@ -26,6 +26,9 @@ public class Schedule {
     @Column(name = "id", nullable = false)
     private String id;
 
+    @Column(name = "schedule_code", nullable = false)
+    private String scheduleCode;
+
     @ManyToOne
     private Train train;
 

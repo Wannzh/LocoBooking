@@ -23,6 +23,9 @@ public class Station {
     @Column(name = "Id", nullable = false)
     private String id;
 
+    @Column(name = "station_code", nullable = false, length = 5)
+    private String stationCode;
+
     @Column(name = "name", nullable = false)
     private String stationName;
 

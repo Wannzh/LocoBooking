@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.uas.locobooking.dto.ticket.SeatDto;
 import com.uas.locobooking.models.Seat;
-import com.uas.locobooking.models.Train;
 import com.uas.locobooking.repositories.SeatRepository;
-import com.uas.locobooking.repositories.TrainRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,18 +15,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SeatServiceImpl implements SeatService {
     private final SeatRepository seatRepository;
-    private final TrainRepository trainRepository;
 
     @Override
     public SeatDto createSeat(SeatDto seatDto) {
-        Train train = trainRepository.findById(seatDto.getTrainId())
-                .orElseThrow(() -> new RuntimeException("Train not found"));
-
         Seat seat = Seat.builder()
                 .seatNumber(seatDto.getSeatNumber())
-                .seatClass(seatDto.getClassType())
                 .isAvailable(seatDto.isAvailable())
-                .train(train)
                 .build();
 
         return SeatDto.fromEntity(seatRepository.save(seat));
@@ -53,15 +45,10 @@ public class SeatServiceImpl implements SeatService {
     public SeatDto updateSeat(String id, SeatDto seatDto) {
         Seat seat = seatRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Seat not found"));
-
-        Train train = trainRepository.findById(seatDto.getTrainId())
-                .orElseThrow(() -> new RuntimeException("Train not found"));
-
+                        
         seat = seat.toBuilder()
                 .seatNumber(seatDto.getSeatNumber())
-                .seatClass(seatDto.getClassType())
                 .isAvailable(seatDto.isAvailable())
-                .train(train)
                 .build();
 
         return SeatDto.fromEntity(seatRepository.save(seat));

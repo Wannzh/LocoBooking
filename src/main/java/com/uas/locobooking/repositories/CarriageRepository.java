@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uas.locobooking.models.Carriage;
-import com.uas.locobooking.models.Seat;
+import com.uas.locobooking.models.Train;
 
-public interface SeatRepository extends JpaRepository<Seat, String> {
-    List<Seat> findByCarriage(Carriage carriage);
+
+public interface CarriageRepository extends JpaRepository<Carriage, String>{
+    List<Carriage> findByTrain(Train train);
 }
