@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Locobooking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .email-header {
+            background-color: #FF6B00;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 42px;
+            letter-spacing: 2px;
+        }
+
+        .email-header img {
+            width: 100px;
+            margin-top: 20px;
+        }
+
+        .email-body {
+            padding: 30px;
+            color: #333;
+        }
+
+        .email-body p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 0 20px;
+        }
+
+        .email-footer {
+            background-color: #FFECD1;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .email-footer a {
+            color: #FF6B00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .email-tagline {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Welcome to Locobooking!</h1>
+            <img src="https://img.icons8.com/clouds/100/train.png" alt="Kereta Api" />
+        </div>
+        <div class="email-body">
+            <p th:text="|Hi, ${mail} 👋|"></p>
+            <p>Terima kasih telah mendaftar di Locobooking. Kini Anda bisa menikmati layanan pemesanan tiket kereta api dengan mudah dan cepat!</p>
+            <p>Jangan lupa untuk menjaga kredensial akun Anda dan nikmati perjalanan nyaman bersama kami!</p>
+            <p><em>Ini adalah email otomatis. Harap tidak membalas email ini.</em></p>
+        </div>
+        <div class="email-footer">
+            <p>Butuh bantuan? <a href="https://locobooking.com">Hubungi kami di locobooking.com</a></p>
+            <div class="email-tagline">Locobooking - Solusi Mudah Pemesanan Tiket Kereta</div>
+        </div>
+    </div>
+</body>
+</html>
