@@ -6,10 +6,12 @@ import com.uas.locobooking.dto.schedule.ScheduleDto;
 import com.uas.locobooking.services.schedule.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/schedules")
+@RequestMapping("/api/schedules")
 @RequiredArgsConstructor
 public class ScheduleController {
     private final ScheduleService scheduleService;
@@ -50,6 +52,10 @@ public class ScheduleController {
         try {
             GenericResponse<PageResponse<ScheduleDto>> response = scheduleService.getAllSchedules(page, size, keyword,
                     sortBy, direction);
+
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Current User: " + auth.getName());
+            System.out.println("Authorities: " + auth.getAuthorities());
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(GenericResponse.<PageResponse<ScheduleDto>>builder()

@@ -1,4 +1,4 @@
-package com.uas.locobooking.dto.security;
+package com.uas.locobooking.security;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -35,37 +35,37 @@ public class JwtFilter extends OncePerRequestFilter {
 
         try {
             String accessToken = jwtUtil.resolveToken(request);
-
-            // Jika tidak ada token, lanjutkan ke filter berikutnya tanpa error
-            if (accessToken == null || accessToken.isBlank()) {
+            if (accessToken == null) {
                 filterChain.doFilter(request, response);
                 return;
             }
 
-            // Token ada, lanjutkan proses verifikasi
             Claims claims = jwtUtil.resolveClaims(request);
             if (claims != null && jwtUtil.validateClaims(claims)) {
                 String username = claims.getSubject();
                 String role = claims.get("role").toString();
 
+                // ✅ Tambahkan prefix ROLE_
+                SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                         username,
                         null,
-                        Collections.singleton(new SimpleGrantedAuthority(role))
+                        Collections.singleton(authority)
                 );
-
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
 
+                // 🪵 Optional logging untuk debug
+                System.out.println("Authenticated user: " + username);
+                System.out.println("Granted Authority: " + authority.getAuthority());
+            }
         } catch (Exception e) {
-            // ❌ Kalau token invalid, balas dengan 403
             response.setStatus(HttpStatus.FORBIDDEN.value());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            response.getWriter().write("{\"success\": false, \"message\": \"Your access is forbidden\"}");
+            response.getWriter().write("Your access is forbidden");
             return;
         }
 
-        // ✅ Lanjut ke filter berikutnya (controller, dll)
         filterChain.doFilter(request, response);
     }
 }
