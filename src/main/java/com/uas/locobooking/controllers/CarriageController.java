@@ -8,6 +8,8 @@ import com.uas.locobooking.dto.GenericResponse;
 import com.uas.locobooking.dto.train.CreateCarriageBatchRequest;
 import com.uas.locobooking.services.train.CarriageService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/carriages")
 public class CarriageController {
@@ -16,6 +18,7 @@ public class CarriageController {
     private CarriageService carriageService;
 
     @PostMapping("/batch")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<String>> createCarriageBatch(@RequestBody CreateCarriageBatchRequest request) {
         try {
             carriageService.createCarriagesWithSeats(request);

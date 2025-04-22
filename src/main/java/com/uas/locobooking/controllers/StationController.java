@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/stations")
 @RequiredArgsConstructor
@@ -17,6 +19,7 @@ public class StationController {
     private final StationService stationService;
 
     @GetMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<PageResponse<StationDto>>> getAllStations(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -43,6 +46,7 @@ public class StationController {
     }
 
     @GetMapping("/code/{stationCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<StationDto>> getStationByCode(@PathVariable String stationCode) {
         try {
             return ResponseEntity.ok(stationService.getStationById(stationCode));
@@ -64,6 +68,7 @@ public class StationController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<StationDto>> createStation(@RequestBody StationDto stationDto) {
         try {
             StationDto createdStation = stationService.createStation(stationDto);
@@ -90,6 +95,7 @@ public class StationController {
     }
 
     @PutMapping("/code/{stationCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<StationDto>> updateStation(@PathVariable String stationCode, @RequestBody StationDto stationDto) {
         try {
             StationDto updatedStation = stationService.updateStation(stationCode, stationDto);
@@ -116,6 +122,7 @@ public class StationController {
     }
 
     @DeleteMapping("/code/{stationCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<String>> deleteStation(@PathVariable String stationCode) {
         try {
             stationService.deleteStation(stationCode);

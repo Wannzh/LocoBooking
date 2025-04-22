@@ -33,39 +33,25 @@ public class JwtFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        try {
-            String accessToken = jwtUtil.resolveToken(request);
-            if (accessToken == null) {
+                try {
+                    String accessToken = jwtUtil.resolveToken(request);
+                    if (accessToken == null) {
+                        filterChain.doFilter(request, response);
+                        return;
+                    }
+        
+                    Claims claims = jwtUtil.resolveClaims(request);
+                    if (claims != null && jwtUtil.validateClaims(claims)) {
+                        String username = claims.getSubject();
+                        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                                username, "", Collections.singleton(new SimpleGrantedAuthority(claims.get("role").toString())));
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
+                } catch (Exception e) {
+                    response.setStatus(HttpStatus.FORBIDDEN.value());
+                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                    response.getWriter().write("Your access is forbidden");
+                }
                 filterChain.doFilter(request, response);
-                return;
             }
-
-            Claims claims = jwtUtil.resolveClaims(request);
-            if (claims != null && jwtUtil.validateClaims(claims)) {
-                String username = claims.getSubject();
-                String role = claims.get("role").toString();
-
-                // ✅ Tambahkan prefix ROLE_
-                SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
-
-                Authentication authentication = new UsernamePasswordAuthenticationToken(
-                        username,
-                        null,
-                        Collections.singleton(authority)
-                );
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                // 🪵 Optional logging untuk debug
-                System.out.println("Authenticated user: " + username);
-                System.out.println("Granted Authority: " + authority.getAuthority());
-            }
-        } catch (Exception e) {
-            response.setStatus(HttpStatus.FORBIDDEN.value());
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            response.getWriter().write("Your access is forbidden");
-            return;
-        }
-
-        filterChain.doFilter(request, response);
-    }
 }

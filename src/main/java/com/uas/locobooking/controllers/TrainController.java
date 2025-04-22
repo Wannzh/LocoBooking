@@ -10,6 +10,8 @@ import com.uas.locobooking.dto.train.TrainDto;
 import com.uas.locobooking.services.train.TrainService;
 import org.springframework.web.server.ResponseStatusException;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/trains")
 @RequiredArgsConstructor
@@ -17,6 +19,7 @@ public class TrainController {
     private final TrainService trainService;
 
     @GetMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<PageResponse<TrainDto>>> getAllTrains(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -43,6 +46,7 @@ public class TrainController {
     }
 
     @GetMapping("/code/{trainCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<TrainDto>> getTrainByTrainCode(@PathVariable String trainCode) {
         try {
             return ResponseEntity.ok(trainService.getTrainByTrainCode(trainCode));
@@ -64,6 +68,7 @@ public class TrainController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<TrainDto>> createTrain(@RequestBody TrainDto trainDto) {
         try {
             TrainDto createdTrain = trainService.createTrain(trainDto);
@@ -90,6 +95,7 @@ public class TrainController {
     }
 
     @PutMapping("/code/{trainCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<TrainDto>> updateTrain(@PathVariable String trainCode, @RequestBody TrainDto trainDto) {
         try {
             TrainDto updatedTrain = trainService.updateTrain(trainCode, trainDto);
@@ -116,6 +122,7 @@ public class TrainController {
     }
 
     @DeleteMapping("/code/{trainCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<String>> deleteTrain(@PathVariable String trainCode) {
         try {
             trainService.deleteTrain(trainCode);
