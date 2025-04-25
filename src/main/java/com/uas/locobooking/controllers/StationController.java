@@ -4,6 +4,8 @@ import com.uas.locobooking.dto.GenericResponse;
 import com.uas.locobooking.dto.PageResponse;
 import com.uas.locobooking.dto.station.StationDto;
 import com.uas.locobooking.services.station.StationService;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ public class StationController {
 
     private final StationService stationService;
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<GenericResponse<PageResponse<StationDto>>> getAllStations(
             @RequestParam(defaultValue = "0") int page,
@@ -42,6 +45,7 @@ public class StationController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/code/{stationCode}")
     public ResponseEntity<GenericResponse<StationDto>> getStationByCode(@PathVariable String stationCode) {
         try {
@@ -63,6 +67,7 @@ public class StationController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<GenericResponse<StationDto>> createStation(@RequestBody StationDto stationDto) {
         try {
@@ -89,6 +94,7 @@ public class StationController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/code/{stationCode}")
     public ResponseEntity<GenericResponse<StationDto>> updateStation(@PathVariable String stationCode, @RequestBody StationDto stationDto) {
         try {
@@ -115,6 +121,7 @@ public class StationController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/code/{stationCode}")
     public ResponseEntity<GenericResponse<String>> deleteStation(@PathVariable String stationCode) {
         try {

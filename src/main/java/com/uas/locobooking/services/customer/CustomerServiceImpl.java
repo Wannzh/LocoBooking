@@ -43,20 +43,22 @@ public class CustomerServiceImpl implements CustomerService {
 
             if (!customers.isEmpty())
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email was registered");
+                
+                Users user = new Users();
+                user.setUsername(dto.getEmail());
+                user.setPassword(passwordEncoder.encode(dto.getPassword()));
+                user.setRoles(rolesRepository.findByRoleName(RoleConstant.USER_ROLE));
+                sendEmail(dto.getEmail());
+                usersRepository.save(user);
+                System.out.println("cek 123");
 
             Customer customer = new Customer();
             customer.setName(dto.getName());
             customer.setEmail(dto.getEmail());
             customer.setAddress(dto.getAddress());
             customer.setPhoneNumber(dto.getPhoneNumber());
+            customer.setUsers(user);
             
-            Users user = new Users();
-            user.setUsername(dto.getEmail());
-            user.setPassword(passwordEncoder.encode(dto.getPassword()));
-            user.setRoles(rolesRepository.findByRoleName(RoleConstant.USER_ROLE));
-            sendEmail(dto.getEmail());
-            usersRepository.save(user);
-            System.out.println("cek 123");
 
             return customerRepository.save(customer);
         } catch (Exception e) {
@@ -86,19 +88,4 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
-
-    // @Override
-    // public Customer getCustomerByEmail(String email) {
-
-    //     try {
-    //         Customer customer = customerRepository.findByEmail(email).orElse(null);
-    //         if (customer != null)
-    //             return customer;
-    //         else
-    //             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found");
-    //     } catch (Exception e) {
-
-    //         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-    //     }
-    // }
 }

@@ -12,8 +12,13 @@ import org.springframework.web.server.ResponseStatusException;
 import com.uas.locobooking.dto.auth.LoginRequestDto;
 import com.uas.locobooking.dto.auth.LoginResponseDto;
 import com.uas.locobooking.dto.auth.ResetPasswordRequestDto;
+import com.uas.locobooking.models.Customer;
+import com.uas.locobooking.models.JustLogged;
+import com.uas.locobooking.models.Roles;
 import com.uas.locobooking.models.Users;
 import com.uas.locobooking.repositories.CustomersRepository;
+import com.uas.locobooking.repositories.JustLoggedRepository;
+import com.uas.locobooking.repositories.RolesRepository;
 import com.uas.locobooking.repositories.UsersRepository;
 import com.uas.locobooking.services.EmailService;
 import com.uas.locobooking.util.JwtUtil;
@@ -27,9 +32,15 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     CustomersRepository customerRepository;
+
+    @Autowired
+    RolesRepository rolesRepository;
     
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    JustLoggedRepository justLoggedRepository;
 
     @Autowired
     JwtUtil jwtUtil;
@@ -57,6 +68,16 @@ public class LoginServiceImpl implements LoginService {
             if (!isMatch)
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid username or password");
 
+            Customer customer = customerRepository.findByEmail(user.getUsername()).orElse(null);
+
+            Roles adminRoles = rolesRepository.findByRoleName("ADMIN");
+
+            if (!user.getRoles().equals(adminRoles)){
+                JustLogged justLogged = new JustLogged();
+                justLoggedRepository.deleteAll();
+                justLogged.setCustomer(customer);
+                justLoggedRepository.save(justLogged);
+            }
             LoginResponseDto loginResponseDto = new LoginResponseDto();
             loginResponseDto.setUsername(user.getUsername());
             loginResponseDto.setRole(user.getRoles().getRoleName());

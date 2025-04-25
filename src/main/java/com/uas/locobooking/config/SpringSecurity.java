@@ -73,7 +73,12 @@ public class SpringSecurity {
                                                                 "/api/booking/get-by-email",
                                                                 "/api/booking/payment",
                                                                 "/api/booking/payment-success",
-                                                                "/api/booking/confirmation/**")
+                                                                "/api/booking/confirmation/**",
+                                                                "/api/booking",
+                                                                "/api/booking/check-pesanan",
+                                                                "/api/booking/**",
+                                                                "/api/booking/schedule"
+                                                                )
                                                 .hasAuthority(RoleConstant.USER_ROLE)
 
                                                 // Admin or User

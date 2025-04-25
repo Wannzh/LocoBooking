@@ -19,7 +19,7 @@ public class JwtUtil {
 
     private String secretKey = "sdad2024";
 
-    private Long accessTokenValidity = 60L;
+    private Long accessTokenValidity = 3600L;
 
     private final String TOKEN_HEADER = "Authorization";
 

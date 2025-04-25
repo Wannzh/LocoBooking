@@ -13,4 +13,5 @@ public interface TrainRepository extends JpaRepository<Train, String>{
     boolean existsByTrainCode(String trainCode); // Mengecek apakah Train dengan trainCode ada
     void deleteByTrainCode(String trainCode); // Menghapus Train berdasarkan trainCode
     Page<Train> findByTrainCodeContainingIgnoreCaseOrTrainNameContainingIgnoreCase(String code, String name, Pageable pageable);
+
 }

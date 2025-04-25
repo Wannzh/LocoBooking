@@ -10,4 +10,8 @@ public interface EmailService {
 
     void sendRequestDeleteAccount();
 
+    void successfulTicketBooking();
+
+    void successCancel();
+
 }

@@ -8,6 +8,9 @@ import com.uas.locobooking.dto.GenericResponse;
 import com.uas.locobooking.dto.PageResponse;
 import com.uas.locobooking.dto.train.TrainDto;
 import com.uas.locobooking.services.train.TrainService;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
@@ -16,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class TrainController {
     private final TrainService trainService;
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<GenericResponse<PageResponse<TrainDto>>> getAllTrains(
             @RequestParam(defaultValue = "0") int page,
@@ -42,6 +46,7 @@ public class TrainController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/code/{trainCode}")
     public ResponseEntity<GenericResponse<TrainDto>> getTrainByTrainCode(@PathVariable String trainCode) {
         try {
@@ -63,6 +68,7 @@ public class TrainController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<GenericResponse<TrainDto>> createTrain(@RequestBody TrainDto trainDto) {
         try {
@@ -89,6 +95,7 @@ public class TrainController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/code/{trainCode}")
     public ResponseEntity<GenericResponse<TrainDto>> updateTrain(@PathVariable String trainCode, @RequestBody TrainDto trainDto) {
         try {
@@ -115,6 +122,7 @@ public class TrainController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/code/{trainCode}")
     public ResponseEntity<GenericResponse<String>> deleteTrain(@PathVariable String trainCode) {
         try {

@@ -4,6 +4,8 @@ import com.uas.locobooking.dto.GenericResponse;
 import com.uas.locobooking.dto.PageResponse;
 import com.uas.locobooking.dto.schedule.ScheduleDto;
 import com.uas.locobooking.services.schedule.ScheduleService;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class ScheduleController {
     private final ScheduleService scheduleService;
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<GenericResponse<ScheduleDto>> createSchedule(@RequestBody ScheduleDto scheduleDto) {
         try {
@@ -29,6 +32,7 @@ public class ScheduleController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{scheduleCode}")
     public ResponseEntity<GenericResponse<ScheduleDto>> getScheduleByScheduleCode(@PathVariable String scheduleCode) {
         try {
@@ -42,6 +46,7 @@ public class ScheduleController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<GenericResponse<PageResponse<ScheduleDto>>> getAllSchedules(
             @RequestParam(defaultValue = "0") int page,
@@ -65,6 +70,7 @@ public class ScheduleController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/{scheduleCode}")
     public ResponseEntity<GenericResponse<ScheduleDto>> updateSchedule(
             @PathVariable String scheduleCode,
@@ -80,6 +86,7 @@ public class ScheduleController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/{scheduleCode}")
     public ResponseEntity<GenericResponse<String>> deleteSchedule(@PathVariable String scheduleCode) {
         try {

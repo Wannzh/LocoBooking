@@ -4,6 +4,8 @@ import com.uas.locobooking.dto.GenericResponse;
 import com.uas.locobooking.dto.PageResponse;
 import com.uas.locobooking.dto.route.RouteDto;
 import com.uas.locobooking.services.route.RouteService;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ public class RouteController {
     private final RouteService routeService;
 
     @PostMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<RouteDto>> createRoute(@RequestBody RouteDto routeDto) {
         try {
             RouteDto createdRoute = routeService.createRoute(routeDto);
@@ -41,7 +44,8 @@ public class RouteController {
                     .build());
         }
     }
-
+    
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<GenericResponse<PageResponse<RouteDto>>> getAllRoutes(
             @RequestParam(defaultValue = "0") int page,
@@ -68,6 +72,7 @@ public class RouteController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{routeCode}")
     public ResponseEntity<GenericResponse<RouteDto>> getRouteByCode(@PathVariable String routeCode) {
         try {
@@ -94,6 +99,7 @@ public class RouteController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/{routeCode}")
     public ResponseEntity<GenericResponse<RouteDto>> updateRoute(@PathVariable String routeCode,
             @RequestBody RouteDto routeDto) {
@@ -121,6 +127,7 @@ public class RouteController {
         }
     }
 
+    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/{routeCode}")
     public ResponseEntity<GenericResponse<String>> deleteRoute(@PathVariable String routeCode) {
         try {

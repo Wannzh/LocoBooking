@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Booking Berhasil - Kereta Api</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6f00; /* Warna oranye kereta api */
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        h1, h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .booking-details li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .booking-details li span {
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #222;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .train-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .header-logo img {
+            max-height: 50px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/id/archive/4/4a/20200614153328%21Logo_Kereta_Api_Indonesia_1991-2011.svg" alt="Logo Kereta Api">
+        </div>
+        <h1>Kereta Api Booking</h1>
+    </header>
+
+    <div class="content">
+        <h2>Booking Anda Berhasil!</h2>
+        <p>Detail Booking:</p>
+        <div class="booking-details">
+            <ul>
+                <li>ID Booking: <span th:text="${booking.id}"></span></li>
+                <li>Nama Customer: <span th:text="${booking.customer.name}"></span></li>
+                <li>Seat: <span th:text="${booking.seat.seatNumber}"></span></li>
+                <li>Jadwal: <span th:text="${booking.schedule.departureTime}"></span></li>
+                <li>Harga: <span th:text="${booking.carriage.price}"></span></li>
+                <li>Gerbong: <span th:text="${booking.carriage.carriageNumber}"></span></li>
+            </ul>
+        </div>
+        <img src="https://example.com/train-image.jpg" alt="Kereta Api" class="train-image">
+    </div>
+
+    <footer>
+        <p>Selamat Menikmati Perjalanan Anda bersama Kereta Api!</p>
+    </footer>
+</body>
+
+</html>

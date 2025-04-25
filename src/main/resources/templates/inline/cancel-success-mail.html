@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Pembatalan Tiket Berhasil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .header h2 {
+      color: #d32f2f;
+      margin: 0;
+    }
+    .content {
+      font-size: 16px;
+      color: #333333;
+      line-height: 1.6;
+    }
+    .ticket-info {
+      background-color: #f2f2f2;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .ticket-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .ticket-info li {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .ticket-info li:last-child {
+      border-bottom: none;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Pembatalan Tiket Berhasil ✅</h2>
+    </div>
+    <div class="content">
+      <p>Yth. <strong th:text="${booking.customer.name}">Nama Penumpang</strong>,</p>
+      <p>
+        Permintaan pembatalan tiket Anda telah <strong>berhasil diproses</strong>. 
+        Detail pembatalan tiket sebagai berikut:
+      </p>
+
+      <div class="ticket-info">
+        <ul>
+          <li><strong>ID Booking:</strong> <span th:text="${booking.id}">ID</span></li>
+          <li><strong>Nama Customer:</strong> <span th:text="${booking.customer.name}">Nama</span></li>
+          <li><strong>Seat:</strong> <span th:text="${booking.seat.seatNumber}">A1</span></li>
+          <li><strong>Jadwal:</strong> <span th:text="${#dates.format(booking.schedule.departureTime, 'dd MMM yyyy, HH:mm')}">27 Apr 2025, 10:00</span></li>
+          <li><strong>Gerbong:</strong> <span th:text="${booking.carriage.carriageNumber}">1</span></li>
+          <li><strong>Harga:</strong> Rp <span th:text="${#numbers.formatDecimal(booking.carriage.price, 0, 'COMMA')}">250.000</span></li>
+        </ul>
+      </div>
+
+      <p>
+        Pengembalian dana akan diproses ke metode pembayaran yang digunakan saat pemesanan 
+        dalam waktu maksimal <strong>7 hari kerja</strong>.
+      </p>
+
+      <p>
+        Terima kasih telah menggunakan layanan <strong>KAI</strong>. Kami berharap dapat melayani Anda kembali di lain waktu.
+      </p>
+    </div>
+    <div class="footer">
+      &copy; 2025 PT Kereta Api Indonesia. Semua Hak Dilindungi.
+    </div>
+  </div>
+</body>
+</html>

@@ -10,6 +10,8 @@ public interface LoginService {
 
     void sendForgotPassword(String email);
 
+    
+
     void resetPassword(ResetPasswordRequestDto dto);
 
     void requestDeleteAccount(String email);
