@@ -47,6 +47,7 @@ public class RouteController {
     
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<PageResponse<RouteDto>>> getAllRoutes(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -74,6 +75,7 @@ public class RouteController {
 
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{routeCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<RouteDto>> getRouteByCode(@PathVariable String routeCode) {
         try {
             RouteDto route = routeService.getRouteById(routeCode);
@@ -101,6 +103,7 @@ public class RouteController {
 
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/{routeCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<RouteDto>> updateRoute(@PathVariable String routeCode,
             @RequestBody RouteDto routeDto) {
         try {
@@ -129,6 +132,7 @@ public class RouteController {
 
     @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/{routeCode}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<GenericResponse<String>> deleteRoute(@PathVariable String routeCode) {
         try {
             routeService.deleteRoute(routeCode);

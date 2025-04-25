@@ -28,7 +28,6 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     JwtUtil jwtUtil;
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void doFilterInternal(HttpServletRequest request,
             HttpServletResponse response,
