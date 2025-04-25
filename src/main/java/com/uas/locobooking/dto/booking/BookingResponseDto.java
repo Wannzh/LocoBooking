@@ -4,7 +4,6 @@ import com.uas.locobooking.models.Carriage;
 import com.uas.locobooking.models.Customer;
 import com.uas.locobooking.models.Schedule;
 import com.uas.locobooking.models.Seat;
-import com.uas.locobooking.models.Users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

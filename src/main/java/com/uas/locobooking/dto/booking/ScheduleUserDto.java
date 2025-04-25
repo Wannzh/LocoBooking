@@ -2,7 +2,6 @@ package com.uas.locobooking.dto.booking;
 
 import java.time.LocalDateTime;
 
-import com.uas.locobooking.dto.schedule.ScheduleDto;
 import com.uas.locobooking.models.Schedule;
 
 import lombok.AllArgsConstructor;

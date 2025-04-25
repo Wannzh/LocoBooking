@@ -2,9 +2,7 @@ package com.uas.locobooking.services;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.text.NumberFormat;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.uas.locobooking.models.Booking;
-import com.uas.locobooking.models.Customer;
 import com.uas.locobooking.models.JustLogged;
 import com.uas.locobooking.repositories.BookingRepository;
-import com.uas.locobooking.repositories.CustomersRepository;
 import com.uas.locobooking.repositories.JustLoggedRepository;
 
 import jakarta.mail.MessagingException;
@@ -32,9 +28,6 @@ public class EmailServicelmpl implements EmailService {
     private BookingRepository bookingRepository;
 
     @Autowired
-    private CustomersRepository customerRepository;
-
-    @Autowired
     private JustLoggedRepository justLoggedRepository;
 
     @Autowired
@@ -42,8 +35,6 @@ public class EmailServicelmpl implements EmailService {
 
     @Autowired
     ThymeleafService thymeleafService;
-
-    private NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
 
     private final String ADMIN_EMAIL = "admin@locobooking.com";
     private final String ADMIN_PERSONAL = "Admin LocoBooking";
